@@ -12,6 +12,8 @@ import unbosque.edu.co.modelo.Empleado;
 public class Controller {
 
 	/**
+	 * <pre>Es llamado desde AppMain</pre>
+	 * <h4>PostCondiciones: Ejecutar la clase Empleado</h4>
 	 * 
 	 */
 	public Controller() {

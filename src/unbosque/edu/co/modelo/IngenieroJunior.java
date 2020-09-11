@@ -23,8 +23,14 @@ public class IngenieroJunior extends EmpleadoFijo {
 	}
 	
 	@Override
+	/**
+	 * <pre>
+	 * 1. Tener implementada una interfaz (InterfaceEmpleadoFijo) que tenga el metodo porcentaje adicional<br>
+	 * 2. Desde la clase en la cual se va a crear el objeto es necesario enviar los parametros de anios<br>
+	 * </pre>
+	 * @param int anios , para hacer calculo de porcentaje Adicional
+	 */
 	public void porcentajeAdicional(int anios) {
-		// TODO Auto-generated method stub
 		
 	}
 	
