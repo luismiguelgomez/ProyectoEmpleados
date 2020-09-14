@@ -2,7 +2,7 @@
  * En esta clase se pretende hacer las operacion para calcular el salario del
  * Ingeniero Junior por nivel que ha alcanzado y el porcentaje definido
  */
-package co.edu.unbosque.modelo;
+package unbosque.edu.co.modelo;
 /**
  * @author rodas
  *
