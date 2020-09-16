@@ -7,7 +7,7 @@ package unbosque.edu.co.modelo;
  * @author rodas
  *
  */
-public class IngenieroJunior implements InterfaceEmpleadoFijo{
+public class IngenieroJunior implements EmpleadoFijo{
 	/**
 	 * 
 	 */
@@ -30,13 +30,22 @@ public class IngenieroJunior implements InterfaceEmpleadoFijo{
 	 * </pre>
 	 * @param int anios , para hacer calculo de porcentaje Adicional
 	 */
+	public void porcentajeAdicional(int anios) {
+	}
 
+/**
+ * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 5% al salario base
+ */
 	public void nivelDosTres(){
 	int nivel2 = (salarioBase*0.05)+salarioBase;
 	int nivel3 = (salarioBase*0.05)+salarioBase;
 	}
+/**
+ * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 8% al salario base
+ */
 	public void nivelCuatroCinco(){
 	int nivel4 = (salarioBase*0.08)+salarioBase;
 	int nivel5 = (salarioBase*0.08)+salarioBase;
 	}
 }
+
