@@ -3,6 +3,8 @@
  */
 package unbosque.edu.co.controlador;
 
+import unbosque.edu.co.vista.View;
+
 import unbosque.edu.co.modelo.Empleado;
 
 /**
@@ -18,6 +20,7 @@ public class Controller {
 	 */
 	public Controller() {
 		Empleado claseEmpleado = new Empleado();
+		View v = new View();
 	}
 
 }
