@@ -15,7 +15,7 @@ public abstract class EmpleadoFijo extends Empleado implements InterfaceEmpleado
 	 * 
 	 */
 	public EmpleadoFijo() {
-
+		
 	}
 
 }
