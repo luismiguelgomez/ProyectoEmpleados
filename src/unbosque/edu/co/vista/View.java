@@ -20,8 +20,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -53,7 +55,7 @@ public class View {
 	ImageIcon imagenI;
 	JTextField nombre,apellido,cedula,correo,telefono,direccion;
 	JRadioButton masculino,femenino;
-	JButton botonE;
+	JButton botonE[];
 	JComboBox<String> genero;
 	
 	public View() {
@@ -107,8 +109,13 @@ public class View {
 			botones[i]=new JButton();
 			
 		}
+		//cantidad botones en infoemacion empleado
 		
+		botonE = new JButton[2];
+		for(int i= 0;i< botonE.length; i++) {
+			botonE[i]=new JButton();
 		
+		}
 		
 		//accion del mouse 
 		
@@ -119,6 +126,7 @@ public class View {
 				menu();
 				eventoMenu();
 				eventoInformacion();
+				
 			}
 		});
 		
@@ -132,9 +140,10 @@ public class View {
 		
 		ventana.setVisible(true);
 		
+		
 	}//cierre del constructor
 	
-	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void menu() {
 		
 		 /**
@@ -142,7 +151,7 @@ public class View {
 	     */
 		
 	//Presentacion menu
-		
+	
 		presentacion.setVisible(false);
 		menu = new JPanel();
 		menu.setLayout(null);
@@ -158,7 +167,6 @@ public class View {
 		fondoM.setIcon(imagenM);
 		fondoM.setVisible(true);
 		menu.add(fondoM,0);
-		
 		
 		//nombro los botones
 		
@@ -234,9 +242,10 @@ public class View {
 		});
 		
 		}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		public void informacionE() {
-			//Presentacion menu
+			//Presentacion informacion de empleado
 			
 			menu.setVisible(false);
 			informacionE = new JPanel();
@@ -244,22 +253,26 @@ public class View {
 			informacionE.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
 			informacionE.setVisible(true);
 			
-			//fondo de presentacion menu
+			//fondo de presentacion informacion de empleado
 			
 			fondoI = new JLabel();
 			fondoI.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
+			imagenI = new ImageIcon("src/unbosque/edu/co/vista/imagenes/imagenM.jpg");
+			imagenI = new ImageIcon(imagenI.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
+			fondoI.setIcon(imagenI);
 			fondoI.setVisible(true);
+	        informacionE.add(fondoI,0);
 	
 			
-			  fondoI=new JLabel("Registre su informacion.");
-		        fondoI.setBounds(20,40,300,30);
-		        informacionE.add(fondoI);
+	         fondoI=new JLabel("Registre su informacion.");
+	        fondoI.setBounds(20,40,300,30);
+		        informacionE.add(fondoI,0);
 		        
 		        //registra nombre
 		        
 		        fondoI=new JLabel("Nombre:");
 		        fondoI.setBounds(10,100,100,30);
-		        informacionE.add(fondoI);
+		        informacionE.add(fondoI,0);
 		        nombre=new JTextField();
 		        nombre.setBounds(100,110,150,20);
 		        informacionE.add(nombre);  	
@@ -268,7 +281,7 @@ public class View {
 		        
 		        fondoI=new JLabel("Apellido:");
 		        fondoI.setBounds(10,200,100,30);
-		        informacionE.add(fondoI);
+		        informacionE.add(fondoI,0);
 		        apellido=new JTextField();
 		        apellido.setBounds(100,210,150,20);
 		        informacionE.add(apellido);  	
@@ -277,7 +290,7 @@ public class View {
 		        
 		        fondoI=new JLabel("Cedula:");
 		        fondoI.setBounds(10,300,100,30);
-		        informacionE.add(fondoI);
+		        informacionE.add(fondoI,0);
 		        cedula=new JTextField();
 		        cedula.setBounds(100,310,150,20);
 		        informacionE.add(cedula);  	
@@ -286,7 +299,7 @@ public class View {
 		        
 		        fondoI=new JLabel("Telefono:");
 		        fondoI.setBounds(10,400,100,30);
-		        informacionE.add(fondoI);
+		        informacionE.add(fondoI,0);
 		        telefono=new JTextField();
 		        telefono.setBounds(100,410,150,20);
 		        informacionE.add(telefono);  	
@@ -295,7 +308,7 @@ public class View {
 		        
 		        fondoI=new JLabel("Correo:");
 		        fondoI.setBounds(10,500,100,30);
-		        informacionE.add(fondoI);
+		        informacionE.add(fondoI,0);
 		        correo=new JTextField();
 		        correo.setBounds(100,510,150,20);
 		        informacionE.add(correo); 
@@ -304,7 +317,7 @@ public class View {
 		        
 		        fondoI=new JLabel("Direccion:");
 		        fondoI.setBounds(350,100,200,30);
-		        informacionE.add(fondoI);
+		        informacionE.add(fondoI,0);
 		        direccion=new JTextField();
 		        direccion.setBounds(440,110,150,20);
 		        informacionE.add(direccion); 
@@ -313,42 +326,62 @@ public class View {
 			
 		        fondoI=new JLabel("genero:");
 		        fondoI.setBounds(350,200,200,30);
-		        informacionE.add(fondoI);
+		        informacionE.add(fondoI,0);
 		        
 				   genero=new JComboBox<String>();
 				   genero.setBounds(440,200,200,30);
-			        informacionE.add(genero);
+			        informacionE.add(genero,0);
 			        genero.addItem("Masculino");
 			        genero.addItem("Femenino");
-			   			        
-			        botonE = new JButton("Guardar informacion");
-			        botonE.setBounds(ventana.getWidth()-700, 335, 215,38 );
-					iniciar.setVisible(true);
-					informacionE.add(botonE,0);
+			   			
+			    	imagenBs= new ImageIcon("src/unbosque/edu/co/vista/imagenes/informacionE.png");
+					imagenBs= new ImageIcon(imagenBs.getImage().getScaledInstance(315, 70, Image.SCALE_DEFAULT));
+					botonE[0].setIcon(imagenBs);
 					
-					botonE = new JButton("Volver");
-					botonE.setBounds(ventana.getWidth()-700, 509, 215,38);
-					botonE.setVisible(true);
-					informacionE.add(botonE);
-			        
-			        
+					imagenBs= new ImageIcon("src/unbosque/edu/co/vista/imagenes/empleadoF.png");
+					imagenBs= new ImageIcon(imagenBs.getImage().getScaledInstance(315, 70, Image.SCALE_DEFAULT));
+					botonE[1].setIcon(imagenBs);
+					
+			    	for (int i= 0; i< botonE.length; i++) {
+			    		botonE[i].setBounds(ventana.getWidth()-(250+50),(i+1)*70, 250,45);//
+			    		botonE[i].setVisible(true);
+				
+			    		
+			    	
+
+						informacionE.add(botonE[i],0);
+					}
 		ventana.add(informacionE);
 		}
 	
-		public void eventoInformacion() {
+
+public void eventoInformacion() {
 			
-	botonE.addMouseListener(new MouseAdapter() {
+			//boton GUARDAR INFORMACION 
+			
+			botonE[0].addMouseListener(new MouseAdapter() {
 				
 				public void mousePressed (MouseEvent e) {
-					System.out.println("Volver");
-					menu();
+					System.out.println("Guardar informacion");
+					
+				
+						
+					
+					
 				}
 			});
-		}
-		
-		  
-
-
+			
+			//boton volver  
+			
+		botones[1].addMouseListener(new MouseAdapter() {
+					
+					public void mousePressed (MouseEvent e) {
+						System.out.println("Volver");
+						menu();
+						
+					}
+			});
+}
 }
 	
 	
