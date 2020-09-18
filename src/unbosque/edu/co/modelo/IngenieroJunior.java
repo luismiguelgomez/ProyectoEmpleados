@@ -1,6 +1,6 @@
 ///**
 // * En esta clase se pretende hacer las operacion para calcular el salario del
-// * Ingeniero Junior por nivel que ha alcanzado y el porcentaje definido
+// * Ingeniero Junior por nivel que ha alcanzado y el porcentaje definidos
 // */
 //package unbosque.edu.co.modelo;
 ///**
