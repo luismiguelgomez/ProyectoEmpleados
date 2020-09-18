@@ -1,27 +1,27 @@
 /**
- * 
+ * En esta clase se pretende hacer las operacion para calcular el salario del
+ * Ingeniero Junior por nivel que ha alcanzado y el porcentaje definido
  */
 package unbosque.edu.co.modelo;
-
 /**
- * @author gomez
+ * @author rodas
  *
  */
-public class IngenieroJunior extends EmpleadoFijo {
-
+public class IngenieroJunior implements EmpleadoFijo{
+	/**
+	 * 
+	 */
 	private boolean nivel1;
 	private boolean nivel2;
 	private boolean nivel3;
 	private boolean nivel4;
 	private boolean nivel5;
-	
-	/**
-	 * 
-	 */
+
 	public IngenieroJunior() {
-		// TODO Auto-generated constructor stub
-	}
 	
+	int nivel1 = salarioBase;
+
+	}
 	@Override
 	/**
 	 * <pre>
@@ -31,7 +31,21 @@ public class IngenieroJunior extends EmpleadoFijo {
 	 * @param int anios , para hacer calculo de porcentaje Adicional
 	 */
 	public void porcentajeAdicional(int anios) {
-		
 	}
-	
+
+/**
+ * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 5% al salario base
+ */
+	public void nivelDosTres(){
+	int nivel2 = (salarioBase*0.05)+salarioBase;
+	int nivel3 = (salarioBase*0.05)+salarioBase;
+	}
+/**
+ * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 8% al salario base
+ */
+	public void nivelCuatroCinco(){
+	int nivel4 = (salarioBase*0.08)+salarioBase;
+	int nivel5 = (salarioBase*0.08)+salarioBase;
+	}
 }
+
