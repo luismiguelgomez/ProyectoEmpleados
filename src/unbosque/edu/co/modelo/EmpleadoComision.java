@@ -10,7 +10,7 @@ public class EmpleadoComision extends Empleado implements InterfaceEmpleadoComis
 	//Atributos
 	
 	/**
-	 * 
+	 * <b>pre condiciones: ser llamado desde otra clase</b>
 	 */
 	public EmpleadoComision() {
 	}
@@ -22,8 +22,8 @@ public class EmpleadoComision extends Empleado implements InterfaceEmpleadoComis
 	 * @param numeroClientes es el numero de clientes que tuvo el empleado por comision
 	 * @return El salario del empleado por comision
 	 */
-	private int clientesCaptados (int numeroClientes) {
-		int salarioEmpleadoComision =  numeroClientes * MONTO_CLIENTE;
+	public int clientesCaptados (int numeroClientes, int montoCliente) {
+		int salarioEmpleadoComision =  numeroClientes * montoCliente;
 		
 		if (salarioEmpleadoComision < 1100000) {
 			salarioEmpleadoComision = salarioEmpleadoComision + SUELDO;

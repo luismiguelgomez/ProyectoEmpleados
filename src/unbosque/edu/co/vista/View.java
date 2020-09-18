@@ -24,7 +24,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import unbosque.edu.co.controlador.ControladorEmpleadoComision;
 import unbosque.edu.co.controlador.Datos;
+import unbosque.edu.co.modelo.EmpleadoComision;
 
 public class View extends JFrame implements ActionListener {
 
@@ -65,6 +68,13 @@ public class View extends JFrame implements ActionListener {
 	JButton botonV1, botonO;
 	JTextField cliente, montoC;
 
+	ControladorEmpleadoComision controladorComision;
+	
+	/**
+	 * Mostrar interfaz gráfica con opciones para los empleados junior, senior y a comision
+	 * <b>Precondiciones: Ser llamado desde otra clase</b>
+	 * <b>Post condiciones: Crear la interfaz en donde deja las opciones de los tipos de empleado</b>
+	 */
 	public View() {
 		// TODO Auto-generated constructor stub
 
@@ -628,12 +638,19 @@ public class View extends JFrame implements ActionListener {
 		if (e.getSource() == botonO) {
 			String cad1 = cliente.getText();
 			String cad2 = montoC.getText();
-			int x1 = Integer.parseInt(cad1);
-			int x2 = Integer.parseInt(cad2);
-			int multiplicacion = x1 * x2;
-			String total = String.valueOf(multiplicacion);
-			JOptionPane.showMessageDialog(this, "Su salario es de: " + total);
+			controladorComision = new ControladorEmpleadoComision(cad1, cad2);
+			
 		}
 
 	}
+	//Fin action performad
+
+	public void panelEmpleadoComision(String conversionString) {
+		JOptionPane.showMessageDialog(this, "Su salario es de: " + conversionString);
+		
+	}
+	
+	
+	
+	
 }
