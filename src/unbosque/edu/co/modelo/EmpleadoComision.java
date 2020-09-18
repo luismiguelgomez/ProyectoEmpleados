@@ -8,12 +8,30 @@ package unbosque.edu.co.modelo;
 public class EmpleadoComision extends Empleado implements InterfaceEmpleadoComision{
 
 	//Atributos
-	int numeroClienteCaptado;
+	
 	/**
 	 * 
 	 */
 	public EmpleadoComision() {
+	}
+	
+	/**
+	 * Da el salario del empleado por comision
+	 * <b>Pre condiciones: Enviar como parametro un numero entero</b>
+	 * <b>Post condiciones: Calcular el salario de un empleado por comision</b>
+	 * @param numeroClientes es el numero de clientes que tuvo el empleado por comision
+	 * @return El salario del empleado por comision
+	 */
+	private int clientesCaptados (int numeroClientes) {
+		int salarioEmpleadoComision =  numeroClientes * MONTO_CLIENTE;
 		
+		if (salarioEmpleadoComision < 1100000) {
+			salarioEmpleadoComision = salarioEmpleadoComision + SUELDO;
+		} else {
+			salarioEmpleadoComision = SUELDO;
+		}
+		
+		return salarioEmpleadoComision;
 	}
 
 }
