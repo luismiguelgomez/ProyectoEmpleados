@@ -25,7 +25,7 @@ public class Datos {
 
 	/**
 	 * Metodo constructor de datos
-	 * <h4>Post condiciones: </h4>Ejecutar la clase
+	 * <b>Post condiciones: Ejecutar la clase<b>
 	 */
 	public Datos() {
 		// TODO Auto-generated constructor stub
@@ -33,8 +33,8 @@ public class Datos {
 	
 	/**
 	 * Guarda informacion de los empleados en array list.
-	 * <pre>Enviar como parametro arraylist y tipoempleado</pre>
-	 * <h4>Post condiciones: </h4>Guardar la informacion segun el tipo de empleado
+	 * <b>Enviar como parametro arraylist y tipoempleado</b>
+	 * <b>Post condiciones: Guardar la informacion segun el tipo de empleado</b>
 	 * 
 	 * @param datosTrabajador arraylist con informacion del trabajador
 	 * @param tipoEmpleado entero que 1 = junior, 2= senior, 3=comision

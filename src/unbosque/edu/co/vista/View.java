@@ -24,7 +24,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import unbosque.edu.co.controlador.ControladorEmpleadoComision;
 import unbosque.edu.co.controlador.Datos;
+import unbosque.edu.co.controlador.VerificarDatos;
+import unbosque.edu.co.modelo.EmpleadoComision;
 
 public class View extends JFrame implements ActionListener {
 
@@ -65,6 +69,14 @@ public class View extends JFrame implements ActionListener {
 	JButton botonV1, botonO;
 	JTextField cliente, montoC;
 
+	ControladorEmpleadoComision controladorComision;
+	VerificarDatos claseVerificarDatos;
+	
+	/**
+	 * Mostrar interfaz gráfica con opciones para los empleados junior, senior y a comision
+	 * <b>Precondiciones: Ser llamado desde otra clase</b>
+	 * <b>Post condiciones: Crear la interfaz en donde deja las opciones de los tipos de empleado</b>
+	 */
 	public View() {
 		// TODO Auto-generated constructor stub
 
@@ -134,13 +146,12 @@ public class View extends JFrame implements ActionListener {
 
 	}// cierre del constructor
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Muestra la pantalla
+	 * <b>Precondiciones: Tener las imagenes en /vista/imagenes ,  es llamado desde el constructor</b>
+	 * <b>Postcondiciones: Crear y organizar los botones correspondientes con su imagen</b>
+	 */
 	public void menu() {
-
-		/**
-		*  
-		*/
-
 		// Presentacion menu
 
 		presentacion.setVisible(false);
@@ -190,6 +201,11 @@ public class View extends JFrame implements ActionListener {
 
 	}// cierre del metodo menu
 
+	/**
+	 * Eventos activados cuando se da un clic en el boton inicio
+	 * <b>Pre condiciones: Clic a boton de "Informacion empleado", "EmpleadoFijo", "Empleado a comision", "Boton salir"</b>
+	 * <b>Post condiciones: Entrar al método correspondiente segun el boton oprimido</b>
+	 */
 	public void eventoMenu() {
 
 		// boton INFORMACION EMPLEADO
@@ -235,7 +251,13 @@ public class View extends JFrame implements ActionListener {
 
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * Registro de informacion del empleado:<br>
+	 * nombre,apellido,cedula,telefono,correo,direccion,genero<br>
+	 * <b>Pre condiciones: Registrar información de personas y tener la imagenM.jpg en la direccion: 
+	 * ../imagenes/imagenM.jpg, boton guardar y boton volcer</b>
+	 * <b>Pos condiciones: Crear y pintar el registro de información de empleados </b>
+	 */
 	public void informacionE() {
 		// Presentacion informacion de empleado
 
@@ -351,6 +373,9 @@ public class View extends JFrame implements ActionListener {
 		add(informacionE, 0);
 	}
 
+	/**
+	 * 
+	 */
 	public void empleadoF() {
 
 		// Presentacion informacion de empleado
@@ -426,6 +451,11 @@ public class View extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Información de los empleados
+	 * <b>Pre condiciones: Oprimir el boton de empleado fijo y despues empleado junir</b>
+	 * <b>Post condiciones: Ingresar información y guardarla en empleado Junir</b>
+	 */
 	public void componentesJ() {
 
 		texto1 = new JLabel("Ingrese su nivel:");
@@ -461,6 +491,11 @@ public class View extends JFrame implements ActionListener {
 		panel1.add(nivel, 0);
 	}
 
+	/**
+	 * Componentes de los programadores Senior
+	 * <b>Precondiciones: Oprimir los botones empleado y despues empleado senior</b>
+	 * <b>PosCondiciones: Guardar la información del empleado senior</b>
+	 */
 	public void componentesS() {
 
 		texto1 = new JLabel("Ventas realizadas");
@@ -496,6 +531,11 @@ public class View extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Componentes de empleado a comision
+	 * <b>Precondiciones: Oprimir el boton empleado comision, y tener la imagen del empleado a comision en la ruta predeterminada para imagenes</b>
+	 * <b>PosCondiciones: Pintar los datos requeridos para los empleados de comision y enviar al action listener cuando se guarde</b>
+	 */
 	public void empleadoC() {
 
 		// Presentacion informacion de empleado
@@ -561,6 +601,12 @@ public class View extends JFrame implements ActionListener {
 		add(empleadoC, 0);
 	}
 
+	
+	/**
+	 * ActionPerformed - Acciones que deben ser realizadas de acuerdo a boton presionado
+	 * <b>Precondiciones: </b>
+	 * <b>PosCondiciones: Ejecuta un JOptionPane, que muestra un mensaje los datos enviados</b>
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -574,12 +620,21 @@ public class View extends JFrame implements ActionListener {
 		}
 		// crea un panel donde muestra toda la infromacion
 		if (e.getSource() == boton1) {
-			JOptionPane.showMessageDialog(null,
-					"Nombre: " + nombre.getText() + "\n" + "\n" + "Apellido: " + apellido.getText() + "\n" + "\n"
-							+ "Cedula: " + cedula.getText() + "\n" + "\n" + "Telefono: " + telefono.getText() + "\n"
-							+ "\n" + "Correo: " + correo.getText() + "\n" + "\n" + "Direccion: " + direccion.getText()
-							+ "\n" + "\n" + "genero: " + genero.getSelectedItem(),
-					"Informacion registrada", JOptionPane.DEFAULT_OPTION);
+			claseVerificarDatos = new VerificarDatos();
+			boolean correoPermitido = claseVerificarDatos.verificarCorreo(correo.getText());
+			if (correoPermitido == true) {
+				JOptionPane.showMessageDialog(null,
+						"Nombre: " + nombre.getText() +
+						"\n" + "\n" + "Apellido: " + apellido.getText() + "\n" + "\n"+
+						"Cedula: " + cedula.getText() + "\n" + "\n" +
+						"Telefono: " + telefono.getText() + "\n"+ "\n" + 
+						"Correo: " + correo.getText() + "\n" + "\n" + 
+						"Direccion: " + direccion.getText()+ "\n" + "\n" + 
+						"Genero: " + genero.getSelectedItem(),
+						"Informacion registrada", JOptionPane.DEFAULT_OPTION);
+			} else {
+				JOptionPane.showMessageDialog(null, "Debe ingresar un correo que tenga @unbosque.edu.co");
+			}
 
 		}
 
@@ -628,12 +683,29 @@ public class View extends JFrame implements ActionListener {
 		if (e.getSource() == botonO) {
 			String cad1 = cliente.getText();
 			String cad2 = montoC.getText();
-			int x1 = Integer.parseInt(cad1);
-			int x2 = Integer.parseInt(cad2);
-			int multiplicacion = x1 * x2;
-			String total = String.valueOf(multiplicacion);
-			JOptionPane.showMessageDialog(this, "Su salario es de: " + total);
+			
+			controladorComision = new ControladorEmpleadoComision(cad1, cad2);
 		}
 
 	}
+	//Fin action performad
+
+	/**
+	 * Saca salario del empleado
+	 * <b>Precondiciones: Haber enviado por el actionperdormad los datos de los números de clientes y el precio</b>
+	 * <b>PosCondiciones: Mostrar el salario de un empleado por comision
+	 * @param conversionString salario del empleado
+	 */
+	public void panelEmpleadoComision(String conversionString) {
+		JOptionPane.showMessageDialog(this, "Su salario es de: " + conversionString);
+	}
+	
+	
+	public void errorMontoClienteEmpleadoComision (String mensajeError) {
+		JOptionPane.showMessageDialog(this,mensajeError);
+	}
+	
+	
+	
+	
 }

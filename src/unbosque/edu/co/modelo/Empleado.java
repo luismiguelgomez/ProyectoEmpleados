@@ -21,8 +21,9 @@ public class Empleado {
 	
 	/**
 	 * Metodo constructor de empleado
-	 * <pre>Ser llamado desde la clase Controller </pre>
-	 * <h4>PostCondiciones: Ser la clase padre de EmpleadoFijo y EmpleadoComision</h4> 
+	 * <b>post</b>
+	 * Ser llamado desde la clase Controller 
+	 * <b>post</b>PostCondiciones: Ser la clase padre de EmpleadoFijo y EmpleadoComision</h4> 
 	 */
 	public Empleado() {
 		System.out.println("Estamos en empleados");
