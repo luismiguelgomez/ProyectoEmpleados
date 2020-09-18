@@ -13,10 +13,10 @@ public class ControladorEmpleadoComision {
 	View claseVista = new View();
 	
 	public ControladorEmpleadoComision(String numeroClientes, String montoClientes) {
-		conversion( numeroClientes, montoClientes);
+		verificarMontoCliente(montoClientes, numeroClientes);
 	}
-
-	private String conversion(String numeroClientes, String parametroMontoClientes) {
+	
+	private String conversion (String numeroClientes, String parametroMontoClientes) {
 		int clientes = Integer.parseInt(numeroClientes);
 		int montoClientes = Integer.parseInt(parametroMontoClientes);
 		int calculo = claseEmpleadoComision.clientesCaptados(clientes, montoClientes);
@@ -24,6 +24,33 @@ public class ControladorEmpleadoComision {
 		
 		claseVista.panelEmpleadoComision(conversionString);
 		return conversionString;
+	}
+	
+	private boolean verificarMontoCliente (String parametroMontoC, String numeroClientes) {
+		boolean montoPermitido = false;
+		int clientes = Integer.parseInt(numeroClientes);
+		int monto = Integer.parseInt(parametroMontoC);
+		String mensajeErroneo = "";
+		
+		if (monto >= 500000 && monto <= 2000000) {
+			montoPermitido = true;
+		} else {
+			if (clientes == 0) {
+				montoPermitido = true;
+			} else {
+				mensajeErroneo = "El rango del precio del cliente debe ser mayor que 500000 y menor que 2000000";
+				montoPermitido = false;
+				claseVista.errorMontoClienteEmpleadoComision(mensajeErroneo);
+			}
+		}
+		
+		
+		
+		if (montoPermitido == true) {
+			conversion(numeroClientes, parametroMontoC);
+		}
+		
+		return montoPermitido;
 	}
 	
 	
