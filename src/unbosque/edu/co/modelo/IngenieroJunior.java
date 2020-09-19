@@ -37,7 +37,7 @@ package unbosque.edu.co.modelo;
 // * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 5% al sueldo
 // */
 	public void nivelDosTres(){
-		nivel2 = (SUELDO*0.05)+SUELDO ;
+		nivel2 = (SUELDO*0.05)+SUELDO  ;
 		nivel3 = (SUELDO*0.05)+SUELDO ;
 	}
 ///**
