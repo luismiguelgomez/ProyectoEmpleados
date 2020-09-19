@@ -3,8 +3,6 @@
  */
 package unbosque.edu.co.controlador;
 
-import unbosque.edu.co.vista.View;
-
 /**
  * @author gomez
  *
@@ -12,12 +10,18 @@ import unbosque.edu.co.vista.View;
 public class VerificarDatos {
 
 	/**
-	 * 
+	 * Metodo constructor de VerificarDatos
 	 */
 	public VerificarDatos() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * <b>Precondiciones: enviar string</p>
+	 * <b>PosCondiciones: devovler boolean que por medio de este se pede saber si es correocto el correo</b>
+	 * @param parametroCorreo correo
+	 * @return boolean que verifica el correo
+	 */
 	public boolean verificarCorreo (String parametroCorreo) {
 		
 		boolean correoPermitido = false;
@@ -41,7 +45,12 @@ public class VerificarDatos {
 	    return correoPermitido;
 	}
 	
-	
+	/**
+	 * <b>Precondiciones: String de nombre</b>
+	 * <b>PosCondiciones: Mostrar error si tiene un nombre nulo</b>
+	 * @param pNombre string de nombre
+	 * @return String con texto de error o vacio
+	 */
 	public String validarNombre (String pNombre) {
 		String nombreValido = ""; 
 
@@ -52,7 +61,13 @@ public class VerificarDatos {
 		
 		return nombreValido;
 	}
-	
+
+	/**
+	 * <b>Precondiciones: String </b>
+	 * <b>PosCondiciones: Mostrar error si tiene el dato como nulo</b>
+	 * @param pApellido string de apellido
+	 * @return String con texto de error
+	 */
 	public String validarApellido (String pApellido) {
 		String apellidoValido = ""; 
 
@@ -63,6 +78,12 @@ public class VerificarDatos {
 		return apellidoValido;
 	}
 	
+	/**
+	 * <b>Precondiciones: String </p>
+	 * <b>PosCondiciones: Mostrar error si tiene el dato como nulo
+	 * @param pCC String de CC
+	 * @return String con error o vacio
+	 */
 	public String validarCedula (String pCC) {
 		String cedulaPermitida = "";
 		
@@ -73,6 +94,12 @@ public class VerificarDatos {
 		return cedulaPermitida;
 	}
 	
+	/**
+	 * <b>Precondiciones: String </b>
+	 * <b>PosCondiciones: Mostrar error si tiene el dato como nulo</b>
+	 * @param pDireccion String de direccion
+	 * @return String con error o vacio
+	 */
 	public String validarDireccion (String pDireccion) {
 		String direccionValido = ""; 
 
@@ -84,6 +111,12 @@ public class VerificarDatos {
 		return direccionValido;
 	}
 	
+	/**
+	 * <b>Precondiciones: String </b>
+	 * <b>PosCondiciones: Mostrar error si tiene el dato como nulo</b>
+	 * @param ptelefono string e telefono
+	 * @return retorna String con error o vacio
+	 */
 	public String validarTelefono (String ptelefono) {
 		String telefonoValidar = "";
 		

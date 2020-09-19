@@ -33,7 +33,7 @@ public class Datos {
 	
 	/**
 	 * Guarda informacion de los empleados en array list.
-	 * <b>Enviar como parametro arraylist y tipoempleado</b>
+	 * <b>Precondiciones:Enviar como parametro arraylist y tipoempleado</b>
 	 * <b>Post condiciones: Guardar la informacion segun el tipo de empleado</b>
 	 * 
 	 * @param datosTrabajador arraylist con informacion del trabajador
