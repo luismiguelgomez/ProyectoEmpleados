@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Datos {
 
 	ArrayList<ArrayList<String>> junior;
-	ArrayList<ArrayList<String>> senior;
+	private String [][] senior = new String[9][];
 	ArrayList<ArrayList<String>> comision;
 	
 	/**
@@ -39,14 +39,14 @@ public class Datos {
 	 * @param datosTrabajador arraylist con informacion del trabajador
 	 * @param tipoEmpleado entero que 1 = junior, 2= senior, 3=comision
 	 */
-	public void setDatosTrabajador(ArrayList<String> datosTrabajador, int tipoEmpleado) {
-		this.datosTrabajador = datosTrabajador;
+	public void setDatosTrabajador(String [][] parametrosTrabajador, int tipoEmpleado) {
+		
 		
 		if (tipoEmpleado == 1) {
 			junior.add(datosTrabajador);
 		}
 		if (tipoEmpleado == 2) {
-			senior.add(datosTrabajador);		
+			senior = parametrosTrabajador;
 		}
 		if (tipoEmpleado == 3) {
 			comision.add(datosTrabajador);

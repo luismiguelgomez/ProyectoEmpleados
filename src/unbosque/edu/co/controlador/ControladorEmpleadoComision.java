@@ -44,8 +44,6 @@ public class ControladorEmpleadoComision {
 			}
 		}
 		
-		
-		
 		if (montoPermitido == true) {
 			conversion(numeroClientes, parametroMontoC);
 		}
