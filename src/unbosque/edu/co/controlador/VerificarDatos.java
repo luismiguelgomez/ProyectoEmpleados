@@ -3,6 +3,8 @@
  */
 package unbosque.edu.co.controlador;
 
+import unbosque.edu.co.vista.View;
+
 /**
  * @author gomez
  *
@@ -37,6 +39,59 @@ public class VerificarDatos {
 	    }
 	    
 	    return correoPermitido;
+	}
+	
+	
+	public String validarNombre (String pNombre) {
+		String nombreValido = ""; 
+
+
+		if(pNombre.equals("")) {
+			nombreValido = "No puede tener un nombre nulo";
+		}
+		
+		return nombreValido;
+	}
+	
+	public String validarApellido (String pApellido) {
+		String apellidoValido = ""; 
+
+		if(pApellido.equals("")) {
+			apellidoValido = "No puede tener un apellido nulo";
+		}
+		
+		return apellidoValido;
+	}
+	
+	public String validarCedula (String pCC) {
+		String cedulaPermitida = "";
+		
+		if(pCC.equals("")) {
+			cedulaPermitida = "No puede tener una CC nula";
+		}
+		
+		return cedulaPermitida;
+	}
+	
+	public String validarDireccion (String pDireccion) {
+		String direccionValido = ""; 
+
+
+		if(pDireccion.equals("")) {
+			direccionValido = "No puede tener un direccion nula";
+		}
+		
+		return direccionValido;
+	}
+	
+	public String validarTelefono (String ptelefono) {
+		String telefonoValidar = "";
+		
+		if (ptelefono.equals("")) {
+			telefonoValidar = "Por favor vuelva a verificar su numero de telefono";
+		}
+		
+		return telefonoValidar;
 	}
 
 }

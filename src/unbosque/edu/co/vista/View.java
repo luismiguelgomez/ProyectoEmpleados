@@ -622,19 +622,57 @@ public class View extends JFrame implements ActionListener {
 		if (e.getSource() == boton1) {
 			claseVerificarDatos = new VerificarDatos();
 			boolean correoPermitido = claseVerificarDatos.verificarCorreo(correo.getText());
-			if (correoPermitido == true) {
-				JOptionPane.showMessageDialog(null,
-						"Nombre: " + nombre.getText() +
-						"\n" + "\n" + "Apellido: " + apellido.getText() + "\n" + "\n"+
-						"Cedula: " + cedula.getText() + "\n" + "\n" +
-						"Telefono: " + telefono.getText() + "\n"+ "\n" + 
-						"Correo: " + correo.getText() + "\n" + "\n" + 
-						"Direccion: " + direccion.getText()+ "\n" + "\n" + 
-						"Genero: " + genero.getSelectedItem(),
-						"Informacion registrada", JOptionPane.DEFAULT_OPTION);
+			String nombrePermitido = claseVerificarDatos.validarNombre(nombre.getText());
+			String apellidoPermitido = claseVerificarDatos.validarApellido(apellido.getText());
+			String cc = claseVerificarDatos.validarCedula(cedula.getText());
+			String direccionVerificada = claseVerificarDatos.validarDireccion(direccion.getText());
+			String telefonoValidar = claseVerificarDatos.validarTelefono(telefono.getText());
+			if (!nombrePermitido.equals("")) {
+				errorMontoClienteEmpleadoComision(nombrePermitido);
 			} else {
-				JOptionPane.showMessageDialog(null, "Debe ingresar un correo que tenga @unbosque.edu.co");
+				if (!apellidoPermitido.equals("")) {
+					errorMontoClienteEmpleadoComision(apellidoPermitido);
+				} else {
+					if (!cc.equals("")) {
+						errorMontoClienteEmpleadoComision(cc);
+					} else {
+						if (!direccionVerificada.equals("")) {
+							errorMontoClienteEmpleadoComision(direccionVerificada);
+						} else {
+							if (!telefonoValidar.equals("")) {
+								errorMontoClienteEmpleadoComision(telefonoValidar);
+							} else {
+								if (correoPermitido == true) {
+									JOptionPane.showMessageDialog(null,
+											"Nombre: " + nombre.getText() +
+											"\n" + "\n" + "Apellido: " + apellido.getText() + "\n" + "\n"+
+											"Cedula: " + cedula.getText() + "\n" + "\n" +
+											"Telefono: " + telefono.getText() + "\n"+ "\n" + 
+											"Correo: " + correo.getText() + "\n" + "\n" + 
+											"Direccion: " + direccion.getText()+ "\n" + "\n" + 
+											"Genero: " + genero.getSelectedItem(),
+											"Informacion registrada", JOptionPane.DEFAULT_OPTION);
+									
+									String[][] arregloPrueba = new String[9][6];
+									arregloPrueba[0][0]= nombre.getText();
+									arregloPrueba[0][1]= apellido.getText();
+									arregloPrueba[0][2]= cedula.getText();
+									arregloPrueba[0][3]= telefono.getText();
+									arregloPrueba[0][4]= correo.getText();
+									arregloPrueba[0][5]= direccion.getText();
+									Datos classDatos = new Datos();
+									classDatos.setDatosTrabajador(arregloPrueba, 2);
+									System.out.println(classDatos.getDatosTrabajador());
+								} else {
+									JOptionPane.showMessageDialog(null, "Debe ingresar un correo que tenga @unbosque.edu.co");
+								}
+							}
+						}
+					}
+				}
 			}
+			
+			
 
 		}
 
@@ -678,7 +716,7 @@ public class View extends JFrame implements ActionListener {
 			empleadoC.setVisible(false);
 			menu.setVisible(true);
 		}
-		// realiza una multiplicacion
+		// Realiza una multiplicacion
 
 		if (e.getSource() == botonO) {
 			String cad1 = cliente.getText();
@@ -704,8 +742,5 @@ public class View extends JFrame implements ActionListener {
 	public void errorMontoClienteEmpleadoComision (String mensajeError) {
 		JOptionPane.showMessageDialog(this,mensajeError);
 	}
-	
-	
-	
 	
 }
