@@ -11,9 +11,9 @@ import java.util.ArrayList;
  */
 public class Datos {
 
-	ArrayList<ArrayList<String>> junior;
+	private String [][] junior = new String[9][];
 	private String [][] senior = new String[9][];
-	ArrayList<ArrayList<String>> comision;
+	private String [][] comision = new String[9][];
 	
 	/**
 	 * Datos basicos y personales del trabajador
@@ -43,13 +43,13 @@ public class Datos {
 		
 		
 		if (tipoEmpleado == 1) {
-			junior.add(datosTrabajador);
+			junior = parametrosTrabajador;
 		}
 		if (tipoEmpleado == 2) {
 			senior = parametrosTrabajador;
 		}
 		if (tipoEmpleado == 3) {
-			comision.add(datosTrabajador);
+			comision = parametrosTrabajador;
 		}
 		
 	}
