@@ -2,26 +2,26 @@
 // * En esta clase se pretende hacer las operacion para calcular el salario del
 // * Ingeniero Junior por nivel que ha alcanzado y el porcentaje definido
 // */
-//package unbosque.edu.co.modelo;
+package unbosque.edu.co.modelo;
 ///**
 // * @author rodas
 // *
 // */
-//public class IngenieroJunior implements EmpleadoFijo{
+ public class IngenieroJunior extends EmpleadoFijo{
 //	/**
 //	 * 
 //	 */
-//	private boolean nivel1;
-//	private boolean nivel2;
-//	private boolean nivel3;
-//	private boolean nivel4;
-//	private boolean nivel5;
+	double nivel1 ;
+	double nivel2 ;
+	double nivel3 ;
+	double nivel4 ;
+	double nivel5 ;
 //
-//	public IngenieroJunior() {
-//	
-//	int nivel1 = salarioBase;
+	public IngenieroJunior() {
+	//	
+		nivel1 = SUELDO;
 //
-//	}
+	}
 //	@Override
 //	/**
 //	 * <pre>
@@ -30,21 +30,52 @@
 //	 * </pre>
 //	 * @param int anios , para hacer calculo de porcentaje Adicional
 //	 */
-//	public void porcentajeAdicional(int anios) {
-//	}
+	public void porcentajeAdicional(int anios) {
+}
 //
 ///**
-// * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 5% al salario base
+// * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 5% al sueldo
 // */
-//	public void nivelDosTres(){
-//	int nivel2 = (salarioBase*0.05)+salarioBase;
-//	int nivel3 = (salarioBase*0.05)+salarioBase;
-//	}
+	public void nivelDosTres(){
+		nivel2 = (SUELDO*0.05)+SUELDO  ;
+		nivel3 = (SUELDO*0.05)+SUELDO ;
+	}
 ///**
-// * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 8% al salario base
+// * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 8% al sueldo
 // */
-//	public void nivelCuatroCinco(){
-//	int nivel4 = (salarioBase*0.08)+salarioBase;
-//	int nivel5 = (salarioBase*0.08)+salarioBase;
-//	}
-//}
+	public void nivelCuatroCinco(){
+	nivel4 = (SUELDO*0.08)+SUELDO;
+	nivel5 = (SUELDO*0.08)+SUELDO;
+	}
+	public double getNivel1() {
+		return nivel1;
+	}
+	public void setNivel1(double nivel1) {
+		this.nivel1 = nivel1;
+	}
+	public double getNivel2() {
+		return nivel2;
+	}
+	public void setNivel2(double nivel2) {
+		this.nivel2 = nivel2;
+	}
+	public double getNivel3() {
+		return nivel3;
+	}
+	public void setNivel3(double nivel3) {
+		this.nivel3 = nivel3;
+	}
+	public double getNivel4() {
+		return nivel4;
+	}
+	public void setNivel4(double nivel4) {
+		this.nivel4 = nivel4;
+	}
+	public double getNivel5() {
+		return nivel5;
+	}
+	public void setNivel5(double nivel5) {
+		this.nivel5 = nivel5;
+	}
+	
+}

@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -53,7 +55,7 @@ public class View extends JFrame implements ActionListener {
 	ImageIcon imagenI;
 	JTextField nombre, apellido, cedula, correo, telefono, direccion;
 	JButton boton1, boton2;
-	JComboBox<String> genero;
+	JComboBox<String> genero,tipoE;
 
 	// empleado fijo
 	JPanel empleadoF, panel1, panel2;
@@ -337,7 +339,7 @@ public class View extends JFrame implements ActionListener {
 
 		// registrar genero
 
-		texto = new JLabel("genero:");
+		texto = new JLabel("Genero:");
 		texto.setBounds(350, 200, 200, 30);
 		informacionE.add(texto, 0);
 
@@ -346,6 +348,17 @@ public class View extends JFrame implements ActionListener {
 		informacionE.add(genero, 0);
 		genero.addItem("Masculino");
 		genero.addItem("Femenino");
+		
+		texto = new JLabel("Tipo empleado:");
+		texto.setBounds(350, 300, 200, 30);
+		informacionE.add(texto, 0);
+		
+		tipoE = new JComboBox<String>();
+		tipoE.setBounds(440, 300, 200, 30);	
+		informacionE.add(tipoE, 0);
+		tipoE.addItem("Empleado junior");
+		tipoE.addItem("Empleado senior");
+		tipoE.addItem("Empleado comision");
 
 		boton1 = new JButton("Guardar informacion");
 		boton1.setBounds(400, 400, 230, 60);
@@ -588,7 +601,7 @@ public class View extends JFrame implements ActionListener {
 
 		botonO = new JButton("Salario");
 		botonO.setBounds(getWidth() - 700, 400, 230, 60);
-		imagenC = new ImageIcon("src/unbosque/edu/co/vista/imagenes/botonGuardar.png");
+		imagenC = new ImageIcon("src/unbosque/edu/co/vista/imagenes/SalarioT.png");
 		imagenC = new ImageIcon(imagenC.getImage().getScaledInstance(315, 70, Image.SCALE_DEFAULT));
 		botonO.setOpaque(false);
 		botonO.setBackground(new Color(0, 0, 0, 0));
@@ -611,6 +624,7 @@ public class View extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		// eventos de los botones de informacion de empleado
+		
 		// volver al menu
 		if (e.getSource() == boton2) {
 
@@ -618,6 +632,7 @@ public class View extends JFrame implements ActionListener {
 			menu.setVisible(true);
 			menu();
 		}
+		
 		// crea un panel donde muestra toda la infromacion
 		if (e.getSource() == boton1) {
 			claseVerificarDatos = new VerificarDatos();
@@ -650,18 +665,32 @@ public class View extends JFrame implements ActionListener {
 											"Telefono: " + telefono.getText() + "\n"+ "\n" + 
 											"Correo: " + correo.getText() + "\n" + "\n" + 
 											"Direccion: " + direccion.getText()+ "\n" + "\n" + 
-											"Genero: " + genero.getSelectedItem(),
+											"Genero: " + genero.getSelectedItem()+ "\n" + "\n" + 
+											"Tipo de empleado: "+tipoE.getSelectedItem(),
 											"Informacion registrada", JOptionPane.DEFAULT_OPTION);
 									
-									String[][] arregloPrueba = new String[9][6];
+									int tipoEmpleado = 0;
+									if (tipoE.getSelectedItem() == "Empleado junior") {
+										tipoEmpleado = 1;
+									} else {
+										if (tipoE.getSelectedItem() == "Empleado senior") {
+											tipoEmpleado = 2;
+										} 
+										if (tipoE.getSelectedItem() == "Empleado comision") {
+											tipoEmpleado = 3;
+										} 
+									}
+									
+									String[][] arregloPrueba = new String[9][7];
 									arregloPrueba[0][0]= nombre.getText();
 									arregloPrueba[0][1]= apellido.getText();
 									arregloPrueba[0][2]= cedula.getText();
 									arregloPrueba[0][3]= telefono.getText();
 									arregloPrueba[0][4]= correo.getText();
 									arregloPrueba[0][5]= direccion.getText();
+									arregloPrueba[0][6]= (String) genero.getSelectedItem();
 									Datos classDatos = new Datos();
-									classDatos.setDatosTrabajador(arregloPrueba, 2);
+									classDatos.setDatosTrabajador(arregloPrueba, tipoEmpleado);
 									System.out.println(classDatos.getDatosTrabajador());
 								} else {
 									JOptionPane.showMessageDialog(null, "Debe ingresar un correo que tenga @unbosque.edu.co");
