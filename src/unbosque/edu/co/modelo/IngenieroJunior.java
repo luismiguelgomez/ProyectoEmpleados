@@ -52,7 +52,10 @@ package unbosque.edu.co.modelo;
 	public int nivelDosTres(int pAnios){
 		int sueldoNivelMedio = (int) ((SUELDO*0.05)+SUELDO);
 		
-		sueldoNivelMedio = sueldoNivelMedio + porcentajeAdicional(pAnios, sueldoNivelMedio);
+		if (pAnios > 1) {
+			sueldoNivelMedio = sueldoNivelMedio + porcentajeAdicional(pAnios, sueldoNivelMedio);
+		}
+		
 		return sueldoNivelMedio;
 	}
 	/**
@@ -61,7 +64,10 @@ package unbosque.edu.co.modelo;
 	public int nivelCuatroCinco(int pAnios){
 		int sueldoNivelAlto = (int) ((SUELDO*0.08)+SUELDO);
 		
-		sueldoNivelAlto = sueldoNivelAlto + porcentajeAdicional(pAnios, sueldoNivelAlto);
+		if (pAnios > 1) {
+			sueldoNivelAlto = sueldoNivelAlto + porcentajeAdicional(pAnios, sueldoNivelAlto);
+		}
+		
 		return sueldoNivelAlto;
 	}
 	
