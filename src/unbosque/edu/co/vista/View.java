@@ -25,12 +25,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import unbosque.edu.co.controlador.ControladorEmpleadoComision;
+import unbosque.edu.co.controlador.ControladorJunior;
 import unbosque.edu.co.controlador.Datos;
 import unbosque.edu.co.controlador.VerificarDatos;
-import unbosque.edu.co.modelo.EmpleadoComision;
+import unbosque.edu.co.modelo.IngenieroJunior;
 
 public class View extends JFrame implements ActionListener {
 
@@ -49,7 +52,9 @@ public class View extends JFrame implements ActionListener {
 	ImageIcon imagenM, imagenBs;
 
 	// informacion empleado
-
+	Datos classDatos;
+	int tipoEmpleado;
+	String[][] arregloPrueba;
 	JPanel informacionE;
 	JLabel fondoI, texto;
 	ImageIcon imagenI;
@@ -58,10 +63,11 @@ public class View extends JFrame implements ActionListener {
 	JComboBox<String> genero,tipoE;
 
 	// empleado fijo
+	ControladorJunior claseControlorJunior;
 	JPanel empleadoF, panel1, panel2;
 	JLabel fondoF, texto1;
 	ImageIcon imagenF;
-	JButton botonS, botonJ, botonG, botonV;
+	JButton botonS, botonJ, botonG, botonV, botonGuardarJunior;
 	JComboBox<String> nivel, venta, anio;
 
 	// empleado a comision
@@ -70,6 +76,13 @@ public class View extends JFrame implements ActionListener {
 	ImageIcon imagenC;
 	JButton botonV1, botonO;
 	JTextField cliente, montoC;
+	
+	//mostrar informacion
+	JPanel mostrarI;
+	JLabel fondo;
+	ImageIcon imagen;
+	JButton botonM;
+	DefaultTableModel modelo;
 
 	ControladorEmpleadoComision controladorComision;
 	VerificarDatos claseVerificarDatos;
@@ -82,6 +95,7 @@ public class View extends JFrame implements ActionListener {
 	public View() {
 		// TODO Auto-generated constructor stub
 
+		claseControlorJunior = new ControladorJunior();
 		// ventana principal
 
 		setSize(1184, 666);
@@ -102,6 +116,7 @@ public class View extends JFrame implements ActionListener {
 
 		fondoP = new JLabel();
 		fondoP.setBounds(0, 0, getWidth(), getHeight());
+		
 		imagenP = new ImageIcon("src/unbosque/edu/co/vista/imagenes/imagenF.jpg");
 		imagenP = new ImageIcon(imagenP.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
 		fondoP.setIcon(imagenP);
@@ -124,7 +139,7 @@ public class View extends JFrame implements ActionListener {
 
 		// cantidad de botones en menu
 
-		botones = new JButton[4];
+		botones = new JButton[5];
 		for (int i = 0; i < botones.length; i++) {
 			botones[i] = new JButton();
 
@@ -189,6 +204,11 @@ public class View extends JFrame implements ActionListener {
 		imagenBs = new ImageIcon("src/unbosque/edu/co/vista/imagenes/salir.png");
 		imagenBs = new ImageIcon(imagenBs.getImage().getScaledInstance(350, 70, Image.SCALE_DEFAULT));
 		botones[3].setIcon(imagenBs);
+		
+		imagenBs = new ImageIcon("src/unbosque/edu/co/vista/imagenes/salir.png");
+		imagenBs = new ImageIcon(imagenBs.getImage().getScaledInstance(350, 70, Image.SCALE_DEFAULT));
+		botones[4].setIcon(imagenBs);
+		
 
 		for (int i = 0; i < botones.length; i++) {
 			botones[i].setBounds(getWidth() - (250 + 50), (i + 1) * 70, 250, 45);//
@@ -242,8 +262,16 @@ public class View extends JFrame implements ActionListener {
 			}
 		});
 
-		// boton SALIR
+		// boton 
 		botones[3].addMouseListener(new MouseAdapter() {
+
+			public void mousePressed(MouseEvent e) {
+				System.out.println("MOSTRAR INFORMACION");
+				mostratI();
+			}
+		});
+		
+		botones[4].addMouseListener(new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {
 				System.out.println("SALIR");
@@ -391,14 +419,14 @@ public class View extends JFrame implements ActionListener {
 	 */
 	public void empleadoF() {
 
-		// Presentacion informacion de empleado
+		// Presentacion empleado fijo
 
 		menu.setVisible(false);
 		empleadoF = new JPanel();
 		empleadoF.setLayout(null);
 		empleadoF.setBounds(0, 0, getWidth(), 200);
 
-		// fondo de presentacion informacion de empleado
+		// fondo de presentacion empleado fijo
 		fondoF = new JLabel();
 		fondoF.setBounds(0, 0, getWidth(), getHeight());
 		imagenF = new ImageIcon("src/unbosque/edu/co/vista/imagenes/imagenM.jpg");
@@ -418,7 +446,7 @@ public class View extends JFrame implements ActionListener {
 		panel2.setBackground(Color.white);
 		panel2.setVisible(false);
 
-		fondoF = new JLabel("Emplados con salario fijo");
+		fondoF = new JLabel("Empleados con salario fijo");
 		fondoF.setFont(new Font("", Font.PLAIN, 20));
 		fondoF.setBounds(20, 40, 300, 30);
 		empleadoF.add(fondoF, 0);
@@ -493,12 +521,12 @@ public class View extends JFrame implements ActionListener {
 		anio.addItem("8 a 15 años");
 		anio.addItem("mas de 15 años");
 
-		botonG = new JButton("Guardar");
-		botonG.setBounds(140, 280, 150, 30);
-		botonG.addActionListener(this);
+		botonGuardarJunior = new JButton("Guardar datos de ingeniero junior");
+		botonGuardarJunior.setBounds(100, 280, 250, 30);
+		botonGuardarJunior.addActionListener(this);
 
 		panel1.add(texto1, 0);
-		panel1.add(botonG, 0);
+		panel1.add(botonGuardarJunior, 0);
 		panel1.add(fondoF, 0);
 		panel1.add(anio, 0);
 		panel1.add(nivel, 0);
@@ -566,7 +594,7 @@ public class View extends JFrame implements ActionListener {
 		fondoC.setIcon(imagenC);
 		empleadoC.add(fondoC);
 
-		fondoC = new JLabel("Emplados con salario a comision");
+		fondoC = new JLabel("Empleados con salario a comision");
 		fondoC.setFont(new Font("", Font.PLAIN, 20));
 		fondoC.setBounds(20, 40, 300, 30);
 		empleadoC.add(fondoC, 0);
@@ -614,6 +642,29 @@ public class View extends JFrame implements ActionListener {
 		add(empleadoC, 0);
 	}
 
+	/**
+	 * 
+	 */
+	public void mostratI() {
+		
+		// Presentacion mostrar informacion
+
+				menu.setVisible(false);
+				mostrarI = new JPanel();
+				mostrarI.setLayout(null);
+				mostrarI.setBounds(0, 0, getWidth(), 200);
+
+				// fondo de presentacion mostrar infromacion
+				fondo = new JLabel();
+				fondo.setBounds(0, 0, getWidth(), getHeight());
+				imagen = new ImageIcon("src/unbosque/edu/co/vista/imagenes/imagenM.jpg");
+				imagen = new ImageIcon(imagen.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+				fondo.setIcon(imagen);
+				
+				modelo = new DefaultTableModel();
+				JTable tabla = new JTable (modelo);
+
+	}
 	
 	/**
 	 * ActionPerformed - Acciones que deben ser realizadas de acuerdo a boton presionado
@@ -669,19 +720,41 @@ public class View extends JFrame implements ActionListener {
 											"Tipo de empleado: "+tipoE.getSelectedItem(),
 											"Informacion registrada", JOptionPane.DEFAULT_OPTION);
 									
-									int tipoEmpleado = 0;
+									tipoEmpleado = 0;
 									if (tipoE.getSelectedItem() == "Empleado junior") {
 										tipoEmpleado = 1;
+										if (e.getSource() == boton1) {
+											informacionE.setVisible(false);
+											empleadoF();
+											empleadoF.setVisible(true);
+										}
+										empleadoF();
 									} else {
 										if (tipoE.getSelectedItem() == "Empleado senior") {
 											tipoEmpleado = 2;
+											
+											if (e.getSource() == boton1) {
+												informacionE.setVisible(false);
+												empleadoF();
+												empleadoF.setVisible(true);
+											}
+											empleadoF();
 										} 
 										if (tipoE.getSelectedItem() == "Empleado comision") {
+											
+											if (e.getSource() == boton1) {
+												informacionE.setVisible(false);
+												empleadoC();
+												empleadoC.setVisible(true);
+											}
+
+											empleadoC();
 											tipoEmpleado = 3;
+											
 										} 
 									}
 									
-									String[][] arregloPrueba = new String[9][7];
+									arregloPrueba = new String[9][8];
 									arregloPrueba[0][0]= nombre.getText();
 									arregloPrueba[0][1]= apellido.getText();
 									arregloPrueba[0][2]= cedula.getText();
@@ -689,9 +762,6 @@ public class View extends JFrame implements ActionListener {
 									arregloPrueba[0][4]= correo.getText();
 									arregloPrueba[0][5]= direccion.getText();
 									arregloPrueba[0][6]= (String) genero.getSelectedItem();
-									Datos classDatos = new Datos();
-									classDatos.setDatosTrabajador(arregloPrueba, tipoEmpleado);
-									System.out.println(classDatos.getDatosTrabajador());
 								} else {
 									JOptionPane.showMessageDialog(null, "Debe ingresar un correo que tenga @unbosque.edu.co");
 								}
@@ -720,6 +790,7 @@ public class View extends JFrame implements ActionListener {
 		}
 		// elegir una categoria
 
+		//Logica empleado Junior
 		if (e.getSource() == botonJ) {
 			panel1.setVisible(true);
 			panel2.setVisible(false);
@@ -730,6 +801,28 @@ public class View extends JFrame implements ActionListener {
 		}
 		// guardar informacion
 
+		//Guardar información ingeniero junior
+		if (e.getSource() == botonGuardarJunior) {
+			System.out.println("Estoy en el boton guardar Junior");
+			String sueldo = "";
+			int enteroNivel = 0;
+			if (nivel.getSelectedItem() == "Nivel 1") {
+				enteroNivel = 1;
+			} else if (nivel.getSelectedItem() == "Nivel 2") {
+				enteroNivel = 2;
+			} else if (nivel.getSelectedItem() == "Nivel 3") {
+				enteroNivel = 3;
+			} else if (nivel.getSelectedItem() == "Nivel 4") {
+				enteroNivel = 4;
+			} else if (nivel.getSelectedItem() == "Nivel 5") {
+				enteroNivel = 5;
+			}
+			
+			sueldo = claseControlorJunior.guardarDatosIngenieroJ(enteroNivel);
+			panelEmpleadoComision(sueldo);
+			
+		}
+		
 		if (e.getSource() == botonG) {
 
 		}
@@ -738,20 +831,35 @@ public class View extends JFrame implements ActionListener {
 		// vuelve al menu
 
 		if (e.getSource() == botonV1) {
+			
 			if (e.getSource() == botonV1) {
 				montoC.setVisible(false);
 				cliente.setVisible(false);
+				botonV1.setVisible(false);
 			}
 			empleadoC.setVisible(false);
 			menu.setVisible(true);
+			menu();
 		}
-		// Realiza una multiplicacion
+		// Realiza logica de empleado por comision
 
 		if (e.getSource() == botonO) {
 			String cad1 = cliente.getText();
 			String cad2 = montoC.getText();
+			controladorComision = new ControladorEmpleadoComision();
+			boolean gananciasEmpleadoComision = controladorComision.verificarMontoCliente(cad1, cad2);
+			if (gananciasEmpleadoComision == true) {
+				String valorGananciasC = controladorComision.conversion(cad1, cad2);
+				panelEmpleadoComision(valorGananciasC);
+				arregloPrueba[0][7]= valorGananciasC;
+				classDatos = new Datos();
+				classDatos.setDatosTrabajador(arregloPrueba, tipoEmpleado);
+			} else {
+				String mensajeErroneo = "El rango del precio del cliente debe ser mayor que 500000 y menor que 2000000";
+				errorMontoClienteEmpleadoComision(mensajeErroneo);
+			}
 			
-			controladorComision = new ControladorEmpleadoComision(cad1, cad2);
+			
 		}
 
 	}
