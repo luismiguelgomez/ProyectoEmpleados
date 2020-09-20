@@ -24,7 +24,22 @@ package unbosque.edu.co.modelo;
 	 * </b>
 	 * @param int anios , para hacer calculo de porcentaje Adicional
 	 */
-	public void porcentajeAdicional(int anios) {
+	public int porcentajeAdicional(int anios, int sueldoAcomulado) {
+		int sueldo = 0;
+		if (anios < 2) {
+			sueldo = SUELDO;
+		} else if(anios > 1 && anios < 4) {
+			sueldo = (int) (sueldoAcomulado * 0.05);
+		} else if(anios > 3 && anios < 8) {
+			sueldo = (int) (sueldoAcomulado * 0.10);
+		}  else if(anios > 6 && anios < 16) {
+			sueldo = (int) (sueldoAcomulado * 0.15);
+		} else if(anios > 15) {
+			sueldo = (int) (sueldoAcomulado * 0.20);
+		}
+		
+		return sueldo;
+		
 	}
 	public int nivelUno() {
 		
@@ -34,21 +49,21 @@ package unbosque.edu.co.modelo;
 	/**
 	 * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 5% al sueldo
 	 */
-	public int nivelDosTres(){
+	public int nivelDosTres(int pAnios){
 		int sueldoNivelMedio = (int) ((SUELDO*0.05)+SUELDO);
 		
+		sueldoNivelMedio = sueldoNivelMedio + porcentajeAdicional(pAnios, sueldoNivelMedio);
 		return sueldoNivelMedio;
 	}
 	/**
 	 * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 8% al sueldo
 	 */
-	public int nivelCuatroCinco(){
+	public int nivelCuatroCinco(int pAnios){
 		int sueldoNivelAlto = (int) ((SUELDO*0.08)+SUELDO);
 		
+		sueldoNivelAlto = sueldoNivelAlto + porcentajeAdicional(pAnios, sueldoNivelAlto);
 		return sueldoNivelAlto;
 	}
-	
-	
 	
 	
 }

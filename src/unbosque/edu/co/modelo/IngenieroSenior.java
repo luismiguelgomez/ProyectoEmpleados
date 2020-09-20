@@ -16,7 +16,6 @@ public class IngenieroSenior extends EmpleadoFijo{
 		
 	}
 
-	@Override
 	/**
 	 * <b>
 	 * 1. Tener implementada una interfaz (InterfaceEmpleadoFijo) que tenga el metodo porcentaje adicional<br>
@@ -26,6 +25,12 @@ public class IngenieroSenior extends EmpleadoFijo{
 	 */
 	public void porcentajeAdicional(int anios) {
 		
+	}
+
+	@Override
+	public int porcentajeAdicional(int anios, int sueldoAcomulado) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

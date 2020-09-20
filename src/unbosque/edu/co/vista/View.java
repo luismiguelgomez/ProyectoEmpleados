@@ -12,11 +12,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,9 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import unbosque.edu.co.controlador.ControladorEmpleadoComision;
 import unbosque.edu.co.controlador.ControladorJunior;
-import unbosque.edu.co.controlador.Datos;
 import unbosque.edu.co.controlador.VerificarDatos;
-import unbosque.edu.co.modelo.IngenieroJunior;
 
 public class View extends JFrame implements ActionListener {
 
@@ -52,9 +47,7 @@ public class View extends JFrame implements ActionListener {
 	ImageIcon imagenM, imagenBs;
 
 	// informacion empleado
-	Datos classDatos;
 	int tipoEmpleado;
-	String[][] arregloPrueba;
 	JPanel informacionE;
 	JLabel fondoI, texto;
 	ImageIcon imagenI;
@@ -68,7 +61,7 @@ public class View extends JFrame implements ActionListener {
 	JLabel fondoF, texto1;
 	ImageIcon imagenF;
 	JButton botonS, botonJ, botonG, botonV, botonGuardarJunior;
-	JComboBox<String> nivel, venta, anio;
+	JComboBox<String> nivel, venta, anio, anioJunior;
 
 	// empleado a comision
 	JPanel empleadoC;
@@ -513,13 +506,13 @@ public class View extends JFrame implements ActionListener {
 		nivel.addItem("Nivel 4");
 		nivel.addItem("Nivel 5");
 
-		anio = new JComboBox<String>();
-		anio.setBounds(140, 210, 150, 30);
-		anio.addItem("menos de 2 años");
-		anio.addItem("2 a 3 años");
-		anio.addItem("4 a 7 años");
-		anio.addItem("8 a 15 años");
-		anio.addItem("mas de 15 años");
+		anioJunior = new JComboBox<String>();
+		anioJunior.setBounds(140, 210, 150, 30);
+		anioJunior.addItem("menos de 2 años");
+		anioJunior.addItem("2 a 3 años");
+		anioJunior.addItem("4 a 7 años");
+		anioJunior.addItem("8 a 15 años");
+		anioJunior.addItem("mas de 15 años");
 
 		botonGuardarJunior = new JButton("Guardar datos de ingeniero junior");
 		botonGuardarJunior.setBounds(100, 280, 250, 30);
@@ -528,7 +521,7 @@ public class View extends JFrame implements ActionListener {
 		panel1.add(texto1, 0);
 		panel1.add(botonGuardarJunior, 0);
 		panel1.add(fondoF, 0);
-		panel1.add(anio, 0);
+		panel1.add(anioJunior, 0);
 		panel1.add(nivel, 0);
 	}
 
@@ -753,15 +746,6 @@ public class View extends JFrame implements ActionListener {
 											
 										} 
 									}
-									
-									arregloPrueba = new String[9][8];
-									arregloPrueba[0][0]= nombre.getText();
-									arregloPrueba[0][1]= apellido.getText();
-									arregloPrueba[0][2]= cedula.getText();
-									arregloPrueba[0][3]= telefono.getText();
-									arregloPrueba[0][4]= correo.getText();
-									arregloPrueba[0][5]= direccion.getText();
-									arregloPrueba[0][6]= (String) genero.getSelectedItem();
 								} else {
 									JOptionPane.showMessageDialog(null, "Debe ingresar un correo que tenga @unbosque.edu.co");
 								}
@@ -818,9 +802,26 @@ public class View extends JFrame implements ActionListener {
 				enteroNivel = 5;
 			}
 			
-			sueldo = claseControlorJunior.guardarDatosIngenieroJ(enteroNivel);
-			panelEmpleadoComision(sueldo);
 			
+			int anios =  0;
+			if (anioJunior.getSelectedItem().equals("menos de 2 años")) {
+				anios = 1;
+			} 
+			if (anioJunior.getSelectedItem().equals("2 a 3 años")) {
+				anios = 3;
+			} 
+			if (anioJunior.getSelectedItem() == "4 a 7 años" ) {
+				anios = 5;
+			} 
+			if (anioJunior.getSelectedItem() == "8 a 15 años" ) {
+				anios = 10;
+			} 
+			if (anioJunior.getSelectedItem() == "mas de 15 años" ) {
+				anios = 20;
+			} 
+
+			sueldo = claseControlorJunior.guardarDatosIngenieroJ(enteroNivel, anios);
+			panelEmpleadoComision(sueldo);
 		}
 		
 		if (e.getSource() == botonG) {
@@ -851,9 +852,6 @@ public class View extends JFrame implements ActionListener {
 			if (gananciasEmpleadoComision == true) {
 				String valorGananciasC = controladorComision.conversion(cad1, cad2);
 				panelEmpleadoComision(valorGananciasC);
-				arregloPrueba[0][7]= valorGananciasC;
-				classDatos = new Datos();
-				classDatos.setDatosTrabajador(arregloPrueba, tipoEmpleado);
 			} else {
 				String mensajeErroneo = "El rango del precio del cliente debe ser mayor que 500000 y menor que 2000000";
 				errorMontoClienteEmpleadoComision(mensajeErroneo);
