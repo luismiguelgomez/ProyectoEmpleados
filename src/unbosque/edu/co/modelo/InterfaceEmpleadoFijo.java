@@ -10,6 +10,6 @@ public interface InterfaceEmpleadoFijo {
 	 * 
 	 * @param anios necesario para hacer el calculo de porcentaje adicional
 	 */
-	void porcentajeAdicional (int anios);
+	int porcentajeAdicional (int anios, int sueldoAcomulado);
 	
 }

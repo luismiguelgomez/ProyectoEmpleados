@@ -1,7 +1,5 @@
 package unbosque.edu.co.modelo;
 
-import unbosque.edu.co.controlador.Datos;
-
 /**
  * 
  * @author gomez
@@ -17,7 +15,6 @@ public class Empleado {
 	protected String correoElectronico;
 	protected  String direccionDomiciliaria;
 	protected int anioIngreso;
-	Datos d = new Datos();
 	
 	/**
 	 * Metodo constructor de empleado
