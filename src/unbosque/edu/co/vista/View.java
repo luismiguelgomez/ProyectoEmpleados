@@ -30,8 +30,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import unbosque.edu.co.controlador.ControladorEmpleadoComision;
+import unbosque.edu.co.controlador.ControladorJunior;
 import unbosque.edu.co.controlador.Datos;
 import unbosque.edu.co.controlador.VerificarDatos;
+import unbosque.edu.co.modelo.IngenieroJunior;
 
 public class View extends JFrame implements ActionListener {
 
@@ -61,10 +63,11 @@ public class View extends JFrame implements ActionListener {
 	JComboBox<String> genero,tipoE;
 
 	// empleado fijo
+	ControladorJunior claseControlorJunior;
 	JPanel empleadoF, panel1, panel2;
 	JLabel fondoF, texto1;
 	ImageIcon imagenF;
-	JButton botonS, botonJ, botonG, botonV;
+	JButton botonS, botonJ, botonG, botonV, botonGuardarJunior;
 	JComboBox<String> nivel, venta, anio;
 
 	// empleado a comision
@@ -92,6 +95,7 @@ public class View extends JFrame implements ActionListener {
 	public View() {
 		// TODO Auto-generated constructor stub
 
+		claseControlorJunior = new ControladorJunior();
 		// ventana principal
 
 		setSize(1184, 666);
@@ -517,12 +521,12 @@ public class View extends JFrame implements ActionListener {
 		anio.addItem("8 a 15 años");
 		anio.addItem("mas de 15 años");
 
-		botonG = new JButton("Guardar");
-		botonG.setBounds(140, 280, 150, 30);
-		botonG.addActionListener(this);
+		botonGuardarJunior = new JButton("Guardar datos de ingeniero junior");
+		botonGuardarJunior.setBounds(100, 280, 250, 30);
+		botonGuardarJunior.addActionListener(this);
 
 		panel1.add(texto1, 0);
-		panel1.add(botonG, 0);
+		panel1.add(botonGuardarJunior, 0);
 		panel1.add(fondoF, 0);
 		panel1.add(anio, 0);
 		panel1.add(nivel, 0);
@@ -638,6 +642,9 @@ public class View extends JFrame implements ActionListener {
 		add(empleadoC, 0);
 	}
 
+	/**
+	 * 
+	 */
 	public void mostratI() {
 		
 		// Presentacion mostrar informacion
@@ -716,9 +723,22 @@ public class View extends JFrame implements ActionListener {
 									tipoEmpleado = 0;
 									if (tipoE.getSelectedItem() == "Empleado junior") {
 										tipoEmpleado = 1;
+										if (e.getSource() == boton1) {
+											informacionE.setVisible(false);
+											empleadoF();
+											empleadoF.setVisible(true);
+										}
+										empleadoF();
 									} else {
 										if (tipoE.getSelectedItem() == "Empleado senior") {
 											tipoEmpleado = 2;
+											
+											if (e.getSource() == boton1) {
+												informacionE.setVisible(false);
+												empleadoF();
+												empleadoF.setVisible(true);
+											}
+											empleadoF();
 										} 
 										if (tipoE.getSelectedItem() == "Empleado comision") {
 											
@@ -770,6 +790,7 @@ public class View extends JFrame implements ActionListener {
 		}
 		// elegir una categoria
 
+		//Logica empleado Junior
 		if (e.getSource() == botonJ) {
 			panel1.setVisible(true);
 			panel2.setVisible(false);
@@ -780,6 +801,28 @@ public class View extends JFrame implements ActionListener {
 		}
 		// guardar informacion
 
+		//Guardar información ingeniero junior
+		if (e.getSource() == botonGuardarJunior) {
+			System.out.println("Estoy en el boton guardar Junior");
+			String sueldo = "";
+			int enteroNivel = 0;
+			if (nivel.getSelectedItem() == "Nivel 1") {
+				enteroNivel = 1;
+			} else if (nivel.getSelectedItem() == "Nivel 2") {
+				enteroNivel = 2;
+			} else if (nivel.getSelectedItem() == "Nivel 3") {
+				enteroNivel = 3;
+			} else if (nivel.getSelectedItem() == "Nivel 4") {
+				enteroNivel = 4;
+			} else if (nivel.getSelectedItem() == "Nivel 5") {
+				enteroNivel = 5;
+			}
+			
+			sueldo = claseControlorJunior.guardarDatosIngenieroJ(enteroNivel);
+			panelEmpleadoComision(sueldo);
+			
+		}
+		
 		if (e.getSource() == botonG) {
 
 		}
@@ -798,7 +841,7 @@ public class View extends JFrame implements ActionListener {
 			menu.setVisible(true);
 			menu();
 		}
-		// Realiza una multiplicacion
+		// Realiza logica de empleado por comision
 
 		if (e.getSource() == botonO) {
 			String cad1 = cliente.getText();
