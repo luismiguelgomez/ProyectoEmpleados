@@ -48,6 +48,8 @@ package unbosque.edu.co.modelo;
 
 	/**
 	 * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 5% al sueldo
+	 * @param pAnios que es equiavalente alos años que lleva en la empresa
+	 * @return sueldo
 	 */
 	public int nivelDosTres(int pAnios){
 		int sueldoNivelMedio = (int) ((SUELDO*0.05)+SUELDO);
@@ -60,6 +62,8 @@ package unbosque.edu.co.modelo;
 	}
 	/**
 	 * el metodo de nivel dos y tres (nivelDosTres) se le incrementa un 8% al sueldo
+	 * @param pAnios que es equiavalente alos años que lleva en la empresa
+	 * @return sueldo
 	 */
 	public int nivelCuatroCinco(int pAnios){
 		int sueldoNivelAlto = (int) ((SUELDO*0.08)+SUELDO);

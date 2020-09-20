@@ -17,7 +17,7 @@ public class VerificarDatos {
 	}
 	
 	/**
-	 * <b>Precondiciones: enviar string</p>
+	 * <b>Precondiciones: enviar string</b>
 	 * <b>PosCondiciones: devovler boolean que por medio de este se pede saber si es correocto el correo</b>
 	 * @param parametroCorreo correo
 	 * @return boolean que verifica el correo
@@ -79,8 +79,8 @@ public class VerificarDatos {
 	}
 	
 	/**
-	 * <b>Precondiciones: String </p>
-	 * <b>PosCondiciones: Mostrar error si tiene el dato como nulo
+	 * <b>Precondiciones: String </b>
+	 * <b>PosCondiciones: Mostrar error si tiene el dato como nulo</b>
 	 * @param pCC String de CC
 	 * @return String con error o vacio
 	 */

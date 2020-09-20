@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import unbosque.edu.co.controlador.ControladorEmpleadoComision;
 import unbosque.edu.co.controlador.ControladorJunior;
+import unbosque.edu.co.controlador.ControladorSenior;
 import unbosque.edu.co.controlador.VerificarDatos;
 
 public class View extends JFrame implements ActionListener {
@@ -56,6 +57,7 @@ public class View extends JFrame implements ActionListener {
 	JComboBox<String> genero,tipoE;
 
 	// empleado fijo
+	ControladorSenior controladorSenior; 
 	ControladorJunior claseControlorJunior;
 	JPanel empleadoF, panel1, panel2;
 	JLabel fondoF, texto1;
@@ -787,7 +789,6 @@ public class View extends JFrame implements ActionListener {
 
 		//Guardar información ingeniero junior
 		if (e.getSource() == botonGuardarJunior) {
-			System.out.println("Estoy en el boton guardar Junior");
 			String sueldo = "";
 			int enteroNivel = 0;
 			if (nivel.getSelectedItem() == "Nivel 1") {
@@ -824,7 +825,36 @@ public class View extends JFrame implements ActionListener {
 			panelEmpleadoComision(sueldo);
 		}
 		
+		//Logica ingeniero senior
 		if (e.getSource() == botonG) {
+			
+			controladorSenior = new ControladorSenior();
+			int numeroVentas = 0;
+			if (venta.getSelectedItem() == "1 a 5") {
+				numeroVentas = 3;
+			} else if (venta.getSelectedItem() == "6 a 10") {
+				numeroVentas = 9;
+			} else if (venta.getSelectedItem() == "10 a 20") {
+				numeroVentas = 19;
+			} else if (venta.getSelectedItem() == "21 o mas") {
+				numeroVentas = 23;
+			}
+			
+			int aniosSenior= 0;
+			if (venta.getSelectedItem() == "menos de 2 años") {
+				aniosSenior = 1;
+			} else if (venta.getSelectedItem() == "2 a 3 años") {
+				aniosSenior = 2;
+			} else if (venta.getSelectedItem() == "4 a 7 años") {
+				aniosSenior = 6;
+			} else if (venta.getSelectedItem() == "8 a 15 años") {
+				aniosSenior = 10;
+			} else if (venta.getSelectedItem() == "mas de 15 años") {
+				aniosSenior = 20;
+			}
+			String sueldo = "";
+			sueldo = controladorSenior.guardarDatosIngenieroSenior(aniosSenior, numeroVentas);
+			panelEmpleadoComision(sueldo);
 
 		}
 		// eventos de los botones de empleado a comision
@@ -866,7 +896,7 @@ public class View extends JFrame implements ActionListener {
 	/**
 	 * Saca salario del empleado
 	 * <b>Precondiciones: Haber enviado por el actionperdormad los datos de los números de clientes y el precio</b>
-	 * <b>PosCondiciones: Mostrar el salario de un empleado por comision
+	 * <b>PosCondiciones: Mostrar el salario de un empleado por comision</b>
 	 * @param conversionString salario del empleado
 	 */
 	public void panelEmpleadoComision(String conversionString) {

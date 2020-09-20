@@ -8,8 +8,8 @@ public class AppMain {
 
 	/**
 	 * <h1>Metodo main</h1>
-	 * <pre>Ejecutar el programa desde eclipse</pre>
-	 * <h4>Post condiciones: Compilar y ejecutar el programa</h4>
+	 * <b>Ejecutar el programa desde eclipse</b>
+	 * <b>Post condiciones: Compilar y ejecutar el programa</b>
 	 * @param args parametro por defecto en el main
 	 */
 	public static void main(String[] args) {

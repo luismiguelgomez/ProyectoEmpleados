@@ -23,6 +23,13 @@ public class ControladorJunior {
 	public ControladorJunior() {
 	}
 	
+	/**
+	 * <b>Precondiciones: 2 enteros</b>
+	 * <b>poscondiciones: Entregar sueldo de ingeniero junior</b>
+	 * @param parametroNivel nivel de ing junior
+	 * @param pAnios años de empleado trabajando
+	 * @return String con los el valor del sueldo
+	 */
 	public String guardarDatosIngenieroJ(int parametroNivel, int pAnios) {
 		claseIngenieroJunior = new IngenieroJunior();
 		int sueldo = 0;

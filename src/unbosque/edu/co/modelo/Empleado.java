@@ -18,12 +18,10 @@ public class Empleado {
 	
 	/**
 	 * Metodo constructor de empleado
-	 * <b>post</b>
-	 * Ser llamado desde la clase Controller 
-	 * <b>post</b>PostCondiciones: Ser la clase padre de EmpleadoFijo y EmpleadoComision</h4> 
+	 * <b>precondiciones: Ser llamado desde la clase Controller</b>
+	 * <b>PostCondiciones: Ser la clase padre de EmpleadoFijo y EmpleadoComision</b> 
 	 */
 	public Empleado() {
-		System.out.println("Estamos en empleados");
 	}
 
 }
